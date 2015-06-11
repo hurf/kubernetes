@@ -675,8 +675,9 @@ func describeNode(node *api.Node, pods []*api.Pod, events *api.EventList) (strin
 			fmt.Fprintf(out, "ExternalID:\t%s\n", node.Spec.ExternalID)
 		}
 		fmt.Fprintf(out, "Pods:\t(%d in total)\n", len(pods))
+		fmt.Fprint(out, "  Name\tNamespace\n")
 		for _, pod := range pods {
-			fmt.Fprintf(out, "  %s\n", pod.Name)
+			fmt.Fprintf(out, "  %s\t%s\n", pod.Name, pod.Namespace)
 		}
 		if events != nil {
 			DescribeEvents(events, out)
